@@ -1,22 +1,25 @@
 import pandas as pd
-from policy.selector import select_strategy
-from backtest.runner import backtest
 
-def run_policy(price: pd.Series, window=None,
-               hurst_thr=0.55, vr_p_thr=0.05, mom_lb=20, mr_z=1.0):
+from backtest.runner import backtest
+from policy.selector import select_strategy
+
+
+def run_policy(
+    price: pd.Series, window=None, hurst_thr=0.55, vr_p_thr=0.05, mom_lb=20, mr_z=1.0
+):
     if window is None:
-        window = max(50, int(len(price)*0.1))  # 価格長10%か50日の大きい方
+        window = max(20, int(len(price) * 0.05))  # ★短縮
     """Rolling regime-switch backtest."""
     equities, dates = [], []
     for i in range(window, len(price)):
-        sub = price.iloc[: i + 1]          # ← i まで含める
+        sub = price.iloc[: i + 1]  # ← i まで含める
         strat = select_strategy(sub, hurst_thr, vr_p_thr, mom_lb, mr_z)
         sig = strat.generate_signals()
 
         # すべて NaN / 空 の場合はキャッシュ状態で代替
         if sig.isna().all():
             sig = pd.Series(0, index=sub.index)
-        
+
         # sigの長さがsubと一致しない場合は調整
         if len(sig) != len(sub):
             sig = sig.reindex(sub.index, fill_value=0)
@@ -25,4 +28,4 @@ def run_policy(price: pd.Series, window=None,
         equities.append(bt["equity"].iloc[-1])
         dates.append(price.index[i])
 
-    return pd.DataFrame({"equity": equities}, index=dates) 
+    return pd.DataFrame({"equity": equities}, index=dates)
