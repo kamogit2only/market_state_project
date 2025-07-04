@@ -2,8 +2,10 @@ import pandas as pd
 from policy.selector import select_strategy
 from backtest.runner import backtest
 
-def run_policy(price: pd.Series, window: int = 200,
+def run_policy(price: pd.Series, window=None,
                hurst_thr=0.55, vr_p_thr=0.05, mom_lb=20, mr_z=1.0):
+    if window is None:
+        window = max(50, int(len(price)*0.1))  # 価格長10%か50日の大きい方
     """Rolling regime-switch backtest."""
     equities, dates = [], []
     for i in range(window, len(price)):
