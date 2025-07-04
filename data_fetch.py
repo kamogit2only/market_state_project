@@ -1,5 +1,7 @@
-import yfinance as yf
 from pathlib import Path
+
+import yfinance as yf
+
 
 def fetch(symbol="^N225", period="5y", interval="1d"):
     df = yf.download(symbol, period=period, interval=interval)
@@ -7,6 +9,7 @@ def fetch(symbol="^N225", period="5y", interval="1d"):
     out = f"data/{symbol.strip('^')}.csv"
     df.to_csv(out)
     return out
+
 
 if __name__ == "__main__":
     print(fetch())

@@ -20,7 +20,6 @@ def hurst(price: pd.Series) -> float:
 def variance_ratio(price: pd.Series, lag: int = 2):
     r = price.pct_change().dropna().values.astype(float)
     n = r.size
-    mu = r.mean()
     m = (n - lag + 1) * (1 - lag / n)
     if m <= 0:
         return np.nan, 1.0

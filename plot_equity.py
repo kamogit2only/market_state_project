@@ -1,9 +1,11 @@
-import matplotlib.pyplot as plt, yfinance as yf
-from strategies.hold import HoldStrategy
-from backtest.runner import backtest
-from backtest.policy_runner import run_policy
+import matplotlib.pyplot as plt
+import yfinance as yf
 
-symbol="^N225"
+from backtest.policy_runner import run_policy
+from backtest.runner import backtest
+from strategies.hold import HoldStrategy
+
+symbol = "^N225"
 price = yf.download(symbol, start="2015-01-01", end="2024-12-31")["Close"]
 
 bh_eq = backtest(price, HoldStrategy(price).generate_signals())["equity"]
@@ -15,4 +17,4 @@ policy_eq.plot(label="Policy")
 plt.title("Equity Curve")
 plt.legend()
 plt.savefig("equity.png")
-print("equity.png saved") 
+print("equity.png saved")

@@ -5,8 +5,15 @@ from strategies.base import BaseStrategy
 
 
 class RSIMRStrategy(BaseStrategy):
-    def __init__(self, price: pd.Series, window: int = 14, thresh: int = 30,
-                 vol_scale: bool = False, atr_window: int = 14, m: float = 10):
+    def __init__(
+        self,
+        price: pd.Series,
+        window: int = 14,
+        thresh: int = 30,
+        vol_scale: bool = False,
+        atr_window: int = 14,
+        m: float = 10,
+    ):
         super().__init__(price)
         if vol_scale:
             atr = price.diff().abs().rolling(atr_window).mean()

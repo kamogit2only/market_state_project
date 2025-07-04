@@ -3,7 +3,6 @@
 例：2015-2017学習→2018テスト, 2016-18→2019 … 2021-23→2024
 """
 
-import itertools
 
 import matplotlib.pyplot as plt
 import pandas as pd
