@@ -4,7 +4,11 @@ from strategies.mean_revert import MeanRevertStrategy
 from strategies.momentum import MomentumStrategy
 
 
-def select_strategy(price, hurst_thr, vr_p_thr, mom_lb, mr_z):
+def select_strategy(price,
+                    hurst_thr: float = 0.45,   # relaxed
+                    vr_p_thr: float = 0.10,
+                    mom_lb: int = 20,
+                    mr_z: float = 1.0):
     m = detect_regime(price)["metrics"]
     # トレンド判定 → Momentum
     if m["hurst"] > hurst_thr and m["vr_p"] < vr_p_thr:
