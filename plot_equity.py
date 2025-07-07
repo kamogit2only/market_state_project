@@ -5,7 +5,7 @@ from backtest.policy_runner import run_policy
 from backtest.runner import backtest
 from strategies.hold import HoldStrategy
 
-symbol = "^N225"
+symbol = "7011.T"  # 三菱重工
 price = yf.download(symbol, start="2015-01-01", end="2024-12-31")["Close"]
 
 bh_eq = backtest(price, HoldStrategy(price).generate_signals())["equity"]

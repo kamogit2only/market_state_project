@@ -20,7 +20,7 @@ grid = {
 combos = list(itertools.product(*grid.values()))
 
 # ---------------- データ取得 ---------------- #
-price = yf.download("^N225", start="2015-01-01", end="2024-12-31")["Close"]
+price = yf.download("7011.T", start="2015-01-01", end="2024-12-31")["Close"]  # 三菱重工
 
 
 def select_strategy(sub_price, hurst_thr, vr_p, mom_lb, mr_z):

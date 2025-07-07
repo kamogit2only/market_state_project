@@ -5,7 +5,7 @@ from backtest.runner import backtest
 from metrics import calc_metrics
 from policy.selector_mix import select_mixed
 
-price = yf.download("^N225", "2020-01-01")["Close"]
+price = yf.download("7011.T", "2020-01-01")["Close"]  # 三菱重工
 pars = dict(trend_w=0.5, hurst_thr=0.55, vr_p_thr=0.01, mom_lb=20, mr_z=1.0)
 
 rows = []

@@ -5,7 +5,7 @@ from metrics import calc_metrics
 from policy.selector_mix import select_mixed
 
 # AAPLデータ取得（より長期間）
-price = yf.download("AAPL", "2020-01-01", "2024-12-31")["Close"]
+price = yf.download("7011.T", "2020-01-01", "2024-12-31")["Close"]  # 三菱重工
 print(
     f"データ期間: {price.index[0].strftime('%Y-%m-%d')} 〜 {price.index[-1].strftime('%Y-%m-%d')}"
 )

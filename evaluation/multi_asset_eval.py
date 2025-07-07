@@ -6,7 +6,7 @@ from backtest.runner import backtest
 from metrics import calc_metrics
 from policy.selector_mix import select_mixed
 
-SYMS = {"^N225": "N225", "^GSPC": "SPX", "AAPL": "AAPL", "BTC-USD": "BTC"}
+SYMS = {"7011.T": "MHI", "9501.T": "TEPCO", "7205.T": "HINO"}
 pars = dict(trend_w=0.5, hurst_thr=0.55, vr_p_thr=0.01, mom_lb=20, mr_z=1.0)
 
 rows, curves = {}, {}

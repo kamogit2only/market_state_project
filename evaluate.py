@@ -6,7 +6,7 @@ from backtest.runner import backtest
 from metrics import calc_metrics
 from strategies.hold import HoldStrategy
 
-symbol = "^N225"
+symbol = "7011.T"  # 三菱重工
 price = yf.download(symbol, start="2015-01-01", end="2024-12-31")["Close"]
 
 # Buy & Hold

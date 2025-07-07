@@ -13,7 +13,7 @@ from policy.selector import select_strategy
 
 GRID_BEST = dict(hurst_thr=0.55, vr_p_thr=0.01, mom_lb=20, mr_z=1.0)
 
-price = yf.download("^N225", start="2014-01-01", end="2024-12-31")["Close"]
+price = yf.download("7011.T", start="2014-01-01", end="2024-12-31")["Close"]  # 三菱重工
 res = []
 
 for start_year in range(2015, 2022):

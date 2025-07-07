@@ -16,7 +16,7 @@ def test_policy_length_match():
 
 # 実データで回帰テスト（短期 window=20）
 def test_policy_with_real_data():
-    price = yf.download("AAPL", start="2020-01-01", interval="1d")["Close"]
+    price = yf.download("7011.T", start="2020-01-01", interval="1d")["Close"]  # 三菱重工
     window = 20
     if len(price) <= window:
         pytest.skip("Insufficient price data from yfinance")

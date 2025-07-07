@@ -6,7 +6,7 @@ from backtest.runner import backtest
 from metrics import calc_metrics
 from policy.selector_mix import select_mixed
 
-price = yf.download("^N225", start="2020-01-01", end="2024-12-31")["Close"]
+price = yf.download("7011.T", start="2020-01-01", end="2024-12-31")["Close"]  # 三菱重工
 print(f"Price data length: {len(price)}")
 pars = dict(hurst_thr=0.55, vr_p_thr=0.01, mom_lb=20, mr_z=1.0)
 
