@@ -1,0 +1,24 @@
+evaluation/rolling_validate.py:6:8: F401 [*] `itertools` imported but unused
+  |
+4 | """
+5 |
+6 | import itertools
+  |        ^^^^^^^^^ F401
+7 |
+8 | import matplotlib.pyplot as plt
+  |
+  = help: Remove unused import: `itertools`
+
+indicators/randomness.py:23:5: F841 Local variable `mu` is assigned to but never used
+   |
+21 |     r = price.pct_change().dropna().values.astype(float)
+22 |     n = r.size
+23 |     mu = r.mean()
+   |     ^^ F841
+24 |     m = (n - lag + 1) * (1 - lag / n)
+25 |     if m <= 0:
+   |
+   = help: Remove assignment to unused variable `mu`
+
+Found 2 errors.
+[*] 1 fixable with the `--fix` option (1 hidden fix can be enabled with the `--unsafe-fixes` option).
