@@ -8,7 +8,8 @@ from strategies.rsi_mr import RSIMRStrategy
 
 
 def select_mixed(
-    price, trend_w=0.7, hurst_thr=0.55, vr_p_thr=0.01, mom_lb=20, mr_z=1.0
+    price, trend_w=0.7, hurst_thr=0.55, vr_p_thr=0.01, mom_lb=20, mr_z=1.0,
+    vol_scale=False
 ):
     """
     1) 既存レジーム判定で Trend/MR を決定
@@ -18,14 +19,14 @@ def select_mixed(
     if isinstance(base, (EMACrossStrategy, DonchianStrategy)):
         # Trend 系 → EMA vs Donchian (trend_wで重み付け)
         return (
-            EMACrossStrategy(price)
+            EMACrossStrategy(price, vol_scale=vol_scale)
             if random.random() < trend_w
-            else DonchianStrategy(price)
+            else DonchianStrategy(price, vol_scale=vol_scale)
         )
     else:
         # MR 系 → BBand vs RSI ((1-trend_w)で重み付け)
         return (
-            BBandMRStrategy(price)
+            BBandMRStrategy(price, vol_scale=vol_scale)
             if random.random() < (1 - trend_w)
-            else RSIMRStrategy(price)
+            else RSIMRStrategy(price, vol_scale=vol_scale)
         )
