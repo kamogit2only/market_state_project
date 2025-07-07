@@ -9,7 +9,7 @@ def run_policy(
     price: pd.Series, window=None, hurst_thr=0.55, vr_p_thr=0.05, mom_lb=20, mr_z=1.0
 ):
     if window is None:
-        window = max(20, int(len(price) * 0.05))  # ★短縮
+        window = max(15, int(len(price) * 0.03))   # さらに短縮
     """Rolling regime-switch backtest."""
     equities, dates = [], []
     for i in range(window, len(price)):
