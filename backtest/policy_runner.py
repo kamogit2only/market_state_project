@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 from backtest.runner import backtest
 from policy.selector import select_strategy
@@ -17,7 +18,9 @@ def run_policy(
         sig = strat.generate_signals()
 
         # すべて NaN / 空 の場合はキャッシュ状態で代替
-        if sig.isna().all():
+        if sig.empty:
+            sig = pd.Series(0, index=sub.index)
+        elif bool(np.all(sig.isna())):
             sig = pd.Series(0, index=sub.index)
 
         # sigの長さがsubと一致しない場合は調整
