@@ -1,8 +1,11 @@
-import pandas as pd, numpy as np
+import numpy as np
+import pandas as pd
+
 from policy.selector_mix import select_mixed
 
+
 def test_mix_runs():
-    p = pd.Series(np.cumsum(np.random.normal(size=400))+100)
+    p = pd.Series(np.cumsum(np.random.normal(size=400)) + 100)
     strat = select_mixed(p)
-    sig   = strat.generate_signals()
-    assert len(sig)==len(p) and sig.isin([0,1]).all() 
+    sig = strat.generate_signals()
+    assert len(sig) == len(p) and sig.isin([0, 1]).all()

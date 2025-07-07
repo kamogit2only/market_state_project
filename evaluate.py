@@ -1,10 +1,12 @@
-import yfinance as yf, pandas as pd
-from strategies.hold import HoldStrategy
-from backtest.runner import backtest
-from backtest.policy_runner import run_policy
-from metrics import calc_metrics
+import pandas as pd
+import yfinance as yf
 
-symbol = "^N225"
+from backtest.policy_runner import run_policy
+from backtest.runner import backtest
+from metrics import calc_metrics
+from strategies.hold import HoldStrategy
+
+symbol = "7011.T"  # 三菱重工
 price = yf.download(symbol, start="2015-01-01", end="2024-12-31")["Close"]
 
 # Buy & Hold
@@ -18,4 +20,4 @@ policy_metrics = calc_metrics(policy_eq)
 
 df = pd.DataFrame([bh_metrics, policy_metrics], index=["Buy&Hold", "Policy"])
 df.to_csv("evaluation.csv")
-print(df) 
+print(df)
